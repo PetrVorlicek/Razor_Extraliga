@@ -1,0 +1,41 @@
+﻿@page "{sort?}"
+@model EHL_Codecademy.Pages.LeagueModel
+
+
+<table style="min-width:500px; width:75%; margin:auto">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"><a asp-page="./Index" asp-route-sort="team">Tým</a></th>
+            <th scope="col"><a asp-page="./Index" asp-route-sort="city">Město</a></th>
+            <th scope="col"><a asp-page="./Index" asp-route-sort="matches">Zápasy</a></th>
+            <th scope="col"><a asp-page="./Index" asp-route-sort="wins">Výhry</a></th>
+            <th scope="col"><a asp-page="./Index" asp-route-sort="winsovertime">VVP</a></th>
+            <th scope="col"><a asp-page="./Index" asp-route-sort="lossesovertime">PVP</a></th>
+            <th scope="col"><a asp-page="./Index" asp-route-sort="losses">Prohry</a></th>
+            <th scope="col">Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in @Model.Teams)
+        {
+            //int matches = team.Wins + team.WinsOvertime + team.Losses + team.LossesOvertime;
+            //int points = (3 * team.Wins) + (2 * team.WinsOvertime) + team.Losses;
+            
+            <tr >
+                
+                <td><img src="~/static/Teams/@team.ImgPath"  style="height: 2rem" /></td>
+                <td><a asp-page="./TeamInfo" asp-route-id="@team.TeamId">@team.Name</a></td>
+                <td>@team.City</td>
+                <td>52</td>
+                <td>@team.Wins</td>
+                <td>@team.WinsOvertime</td>
+                <td>@team.LossesOvertime</td>
+                <td>@team.Losses</td>
+                <td>@Model.TeamPoints[team.Name]</td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>
