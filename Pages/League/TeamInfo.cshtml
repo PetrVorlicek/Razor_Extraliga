@@ -1,0 +1,42 @@
+﻿@page "/team/{id}"
+@model EHL_Codecademy.Pages.League.TeamInfoModel
+@{ 
+    ViewData["Title"] = Model.Team.Name;
+    var team = Model.Team;
+    var players = team.Players;
+}
+<div style="display:flex; flex-direction:row; justify-content:center ">
+    <div style="width:25%; text-align:center" >
+        <img src="~/static/Teams/@team.ImgPath" style="height:auto; max-width:75%" />
+
+    </div>
+    <div style="width:75%; text-align:center">
+        <h3>@team.Name</h3>
+        <h5>@team.City</h5>
+        <table style="min-width:500px; width:75%; margin:auto; text-align:left">
+            <thead>
+                <tr>
+                    <th scope="col">Číslo</th>
+                    <th scope="col">Jméno</th>
+                    <th scope="col">Pozice</th>
+                    <th scope="col">Hůl</th>
+                    <th scope="col">Výška</th>
+                    <th scope="col">Váha</th>
+                </tr>   
+            </thead>
+            <tbody>
+                @foreach(var player in players)
+                {
+                    <tr>
+                        <td>@player.PlayerNumber</td>
+                        <td>@player.Name</td>
+                        <td>@player.Position</td>
+                        <td>@player.Stick</td>
+                        <td>@player.Height</td>
+                        <td>@player.Weight</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
